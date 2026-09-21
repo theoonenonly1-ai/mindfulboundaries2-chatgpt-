@@ -1,37 +1,49 @@
-# THEOONE Office AI — Premium Pack
+# THEOONE Office AI — Premium System
 
 > Nicht mehr KI. Bessere Arbeitsabläufe mit KI.
 
-THEOONE Office AI ist als praktisches Arbeitswerkzeug konzipiert: wiederholbare Arbeitsabläufe statt Prompt-Bastelei.
+THEOONE Office AI ist jetzt als nutzbare Workflow-Anwendung strukturiert.
 
-## Inhalt
+## Enthalten
 
 - 50 Arbeits-Workflows
-- 100 Prompt-Vorlagen (Standard + Präzision)
-- Planner- und Upgrade-System
-- Qualitätsprinzip: Aufgabe → Kontext → Ergebnis → Prüfung → Verbesserung
-- Keine erfundenen Fakten: fehlende Angaben werden mit `[OFFEN]` markiert
+- 100 Prompt-Vorlagen: 50 Standard + 50 Präzision
+- Standard-/Präzisionsmodus
+- Suche und Kategorien
+- Präzisionsfelder
+- Copy-to-Clipboard
+- Favoriten
+- lokaler Verlauf
+- Produkt-/Technik-Spezifikation
+- Roadmap für sichere serverseitige KI-Ausführung
 
-## Kernbereiche
+## Kernprinzip
 
-1. Kommunikation
-2. Dokumente & Text
-3. Planung & Organisation
-4. Recherche & Analyse
-5. Vertrieb & Alltag
+**Aufgabe → Kontext → Ergebnis → Prüfung → Verbesserung**
 
-## Produktprinzipien
+Die Produktquellen verlangen insbesondere:
+- keine erfundenen Fakten, Zahlen, Termine, Quellen oder Zusagen
+- fehlende Angaben als [OFFEN]
+- widersprüchliche Angaben sichtbar machen
+- menschliche Prüfung bei sensiblen oder geschäftskritischen Inhalten
 
-- Ausschließlich bereitgestellte Informationen verwenden.
-- Keine Fakten, Zahlen, Termine, Quellen oder Zusagen erfinden.
-- Unklare oder widersprüchliche Angaben sichtbar machen.
-- Ergebnisse direkt nutzbar und kopierbar ausgeben.
-- Bei sensiblen oder geschäftskritischen Inhalten bleibt die menschliche Prüfung erforderlich.
+## Start
 
-## Status
+Die Workflow-Anwendung liegt in app.html.
 
-Initiale Repository-Struktur. Die Produktinhalte werden schrittweise als strukturierte, maschinenlesbare Daten und als App-Funktionen umgesetzt.
+Die Landingpage index.html bleibt als Verkaufs-/Produktseite bestehen.
 
-## Quelle
+## Projektstruktur
 
-Die aktuelle Premium-Pack-Dokumentation enthält 50 Workflows und je zwei Prompt-Versionen pro Workflow.
+- index.html — Produkt-/Verkaufsseite
+- app.html — Workflow-Anwendung
+- app.css — App-Design
+- app.js — Workflow-/Prompt-Engine
+- data/workflows.json — 50 Workflows
+- docs/INTEGRATION-GITTERBLICK.md — Integration des im Chat „gitterblick prüfen“ begonnenen Projekts
+- PRODUCT_SPEC.md — technische Produktspezifikation
+- docs/ROADMAP.md — weiterer Ausbau
+
+## Sicherheit
+
+Keine Provider-API-Keys in Browser-Code speichern. Die spätere KI-Ausführung wird serverseitig angebunden.
