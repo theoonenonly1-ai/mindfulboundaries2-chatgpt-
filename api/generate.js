@@ -17,7 +17,19 @@ export default async function handler(req,res){
    ? [["Zielgruppe / Empfänger",fields.recipient],["Gewünschte Wirkung",fields.effect],["Ausgabeformat",fields.format],["Länge",fields.length],["Ton",fields.tone],["Pflichtinformationen",fields.required],["Nicht enthalten",fields.exclude]]
      .map(([k,v])=>`${k}: ${v||"[OFFEN]"}`).join("\n")
    : "Modus: Standard";
-  const prompt=[`Workflow: ${workflow.id}. ${workflow.title}`,`Beschreibung: ${workflow.description||""},`Modus: ${mode}`,precision,"Input:",String(input),"","Produktregeln:",...RULES.map(r=>"- "+r),"","Erstelle das gewünschte Ergebnis direkt. Gib keine erfundenen Angaben hinzu."].join("\n");
+  const prompt=[
+   `Workflow: ${workflow.id}. ${workflow.title}`,
+   `Beschreibung: ${workflow.description || ""}`,
+   `Modus: ${mode}`,
+   precision,
+   "Input:",
+   String(input),
+   "",
+   "Produktregeln:",
+   ...RULES.map(r=>"- "+r),
+   "",
+   "Erstelle das gewünschte Ergebnis direkt. Gib keine erfundenen Angaben hinzu."
+  ].join("\n");
   const response=await fetch("https://api.openai.com/v1/responses",{
    method:"POST",
    headers:{"Content-Type":"application/json","Authorization":`Bearer ${process.env.OPENAI_API_KEY}`},
