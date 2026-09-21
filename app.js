@@ -9,7 +9,19 @@ function val(id){return $(id).value.trim()||"[HIER EINFÜGEN]"}
 function makePrompt(){if(!selected){$("output").textContent="Bitte zuerst einen Workflow auswählen.";return}const input=$("context").value.trim()||"[HIER EINFÜGEN]";let out=[];if(mode==="standard"){out=["THEOONE OFFICE AI – PROMPT "+selected.id,"","[STANDARD]","Rolle: Arbeite als professioneller Arbeitsassistent.","Aufgabe: "+selected.title+".","Kontext: "+selected.description,"Input:",input,"","Ziel: Erstelle ein direkt nutzbares Ergebnis.","Format: klar strukturiert, kompakt und gut kopierbar.","Regeln:",...baseRules.map(x=>"- "+x),"- Ergebnis zuerst, danach höchstens 3 kurze Verbesserungshinweise."]}else{out=["THEOONE OFFICE AI – PROMPT "+selected.id,"","[PRÄZISION]","Bearbeite folgende Aufgabe: "+selected.title+".","Arbeitsprinzip: "+selected.description,"","INPUT:",input,"","ZIELGRUPPE / EMPFÄNGER:",val("recipient"),"","GEWÜNSCHTE WIRKUNG:",val("effect"),"","AUSGABEFORMAT:",val("format"),"","LÄNGE:",val("length"),"","TON:",val("tone"),"","PFLICHTINFORMATIONEN:",val("required"),"","NICHT ENTHALTEN:",val("exclude"),"","Qualitätsprüfung:",...quality.map((x,i)=>(i+1)+". "+x)]}$("output").textContent=out.join("\n");$("copy").disabled=false;history=[{id:selected.id,title:selected.title,mode,time:new Date().toISOString()},...history.filter(x=>x.id!==selected.id||x.mode!==mode)].slice(0,12);localStorage.setItem("theooneHistory",JSON.stringify(history))}
 $("search").oninput=e=>render(e.target.value);
 document.querySelectorAll(".mode button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".mode button").forEach(x=>x.classList.remove("active"));b.classList.add("active");mode=b.dataset.mode;$("precisionFields").hidden=mode!=="precision"});
-$("run").onclick=makePrompt;
+async function runAI(){
+ if(!selected){makePrompt();return}
+ const input=$("context").value.trim();
+ if(!input){$("output").textContent="Bitte zuerst Kontext/Input eingeben.";return}
+ const fields={recipient:val("recipient"),effect:val("effect"),format:val("format"),length:val("length"),tone:val("tone"),required:val("required"),exclude:val("exclude")};
+ $("output").textContent="KI wird ausgeführt …";$("copy").disabled=true;
+ try{
+  const r=await fetch("/api/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({workflow:selected,mode,input,fields})});
+  const data=await r.json();if(!r.ok)throw new Error(data.error||"KI-Anfrage fehlgeschlagen.");
+  $("output").textContent=data.output||"Kein Ergebnis erhalten.";$("copy").disabled=false;
+ }catch(e){$("output").textContent="KI-Ausführung nicht verfügbar. Der Prompt kann weiterhin mit „Prompt erstellen“ erzeugt werden.\n\n"+e.message}
+}
+$("run").onclick=runAI;
 $("copy").onclick=async()=>{await navigator.clipboard.writeText($("output").textContent);$("copy").textContent="KOPIERT ✓";setTimeout(()=>$("copy").textContent="KOPIEREN",1300)};
 $("clear").onclick=()=>{$("output").textContent="";$("copy").disabled=true};
 $("favorite").onclick=()=>{if(!selected)return;favorites=favorites.includes(selected.id)?favorites.filter(id=>id!==selected.id):[...favorites,selected.id];localStorage.setItem("theooneFavorites",JSON.stringify(favorites));select(selected)};
