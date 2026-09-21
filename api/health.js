@@ -1,0 +1,1 @@
+export default function handler(_req,res){res.status(200).json({ok:true,service:"THEOONE Office AI",model:process.env.OPENAI_MODEL||"gpt-5.6-luna"});}
