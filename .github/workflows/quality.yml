@@ -1,0 +1,15 @@
+name: THEOONE Quality
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON
+        run: python -m json.tool data/workflows.json > /dev/null
+      - name: Check required frontend files
+        run: test -f app.html && test -f app.css && test -f app.js && test -f data/workflows.json
