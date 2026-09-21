@@ -1,20 +1,20 @@
-# THEOONE Office AI — Server API
+# THEOONE Office AI — Deployment
 
-## Zweck
-Serverseitige KI-Ausführung für die bestehende Workflow-Anwendung.
+## Ziel
+Die App besteht aus einer statischen Oberfläche und einer serverseitigen API. Die API hält den KI-Schlüssel geheim.
 
-## Start
-1. Node.js installieren.
-2. In diesem Ordner `npm install` ausführen.
-3. `.env.example` nach `.env` kopieren.
-4. Den echten API-Schlüssel ausschließlich in `.env` eintragen.
-5. `npm start`.
+## Vercel
+Das Repository enthält bereits `vercel.json`. Nach dem Import des GitHub-Repositories in Vercel:
+1. Project erstellen/importieren.
+2. Keine API-Keys in Dateien eintragen.
+3. In den Project Settings unter Environment Variables setzen:
+   - `OPENAI_API_KEY` = dein API-Schlüssel
+   - optional `OPENAI_MODEL` = gewünschtes Modell
+4. Redeploy ausführen.
+5. `/api/health` öffnen und prüfen, ob die API erreichbar ist.
 
-## API
-- GET `/api/health`
-- POST `/api/generate`
+## Sicherheit
+`.env`, `.env.*` und `node_modules` sind bereits aus Git ausgeschlossen. Der API-Key darf niemals in `app.js`, `app.html` oder anderen Browser-Dateien stehen.
 
-Der Browser erhält niemals den API-Schlüssel.
-
-## Wichtig
-Die Anwendung nutzt die bestehenden THEOONE-Produktregeln: bereitgestellte Informationen verwenden, nichts erfinden, fehlende Angaben als [OFFEN] kennzeichnen und geschäftskritische Ergebnisse menschlich prüfen.
+## Nutzung
+Die Workflow-Oberfläche kann weiterhin ohne API-Verbindung Prompts erzeugen und kopieren. Nach erfolgreicher Server-Konfiguration kann die KI serverseitig ausgeführt werden.
