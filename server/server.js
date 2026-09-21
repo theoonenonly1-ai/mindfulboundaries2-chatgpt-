@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json({ limit: "1mb" }));
 
 const PORT = process.env.PORT || 3000;
-const MODEL = process.env.OPENAI_MODEL || "gpt-5.6-mini";
+const MODEL = process.env.OPENAI_MODEL || "gpt-5.6-luna";
 
 const RULES = [
   "Nutze ausschließlich die bereitgestellten Informationen.",
