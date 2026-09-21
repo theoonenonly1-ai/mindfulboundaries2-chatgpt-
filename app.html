@@ -1,1 +1,26 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="THEOONE Office AI Workflow Library"><title>THEOONE Office AI · Workflows</title><link rel="stylesheet" href="app.css"></head><body><header><a href="index.html" class="brand">THE<span>O</span>ONE <small>OFFICE AI</small></a><div class="tag">WORKFLOW LIBRARY</div></header><main><section class="intro"><div><small>THEOONE PREMIUM SYSTEM</small><h1>Deine Arbeitsabläufe.<br><em>klarer gemacht.</em></h1><p>50 praktische Workflows. Wähle eine Aufgabe, füge deinen Kontext ein und erstelle einen sauberen, wiederverwendbaren KI-Prompt.</p></div><div class="method"><b>Aufgabe → Kontext → Ergebnis → Prüfung → Verbesserung</b><span>Fehlende Informationen werden als [OFFEN] markiert.</span></div></section><section class="workspace"><aside><input id="search" placeholder="Workflow suchen …"><div id="categories"></div></aside><section class="panel"><div class="selected"><small id="category">WORKFLOW</small><h2 id="title">Wähle einen Workflow</h2><p id="desc">Durchsuche links die 50 Arbeits-Workflows.</p></div><div class="mode"><button class="active" data-mode="standard">Standard</button><button data-mode="precision">Präzision</button></div><label for="context">KONTEXT / INPUT</label><textarea id="context" placeholder="Text, Notizen, Anforderungen oder Aufgabe hier einfügen …"></textarea><div class="buttons"><button id="run" class="primary">PROMPT ERSTELLEN</button><button id="copy" disabled>KOPIEREN</button></div><div class="output"><div><b>ERGEBNIS</b><button id="clear">Leeren</button></div><pre id="output">Noch kein Workflow ausgewählt.</pre></div></section></section></main><footer>THEOONE Office AI · <a href="index.html">Zur Produktseite</a></footer><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="THEOONE Office AI — 50 Workflows und 100 Prompt-Vorlagen">
+<title>THEOONE Office AI · Workflow Library</title><link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header><a href="index.html" class="brand">THE<span>O</span>ONE <small>OFFICE AI</small></a><div class="tag">WORKFLOW LIBRARY · v1</div></header>
+<main>
+<section class="intro"><div><small>THEOONE OFFICE AI · PREMIUM SYSTEM</small><h1>Deine Arbeitsabläufe.<br><em>klarer gemacht.</em></h1><p>50 praktische Workflows und 100 Prompt-Vorlagen. Aufgabe wählen, Kontext eintragen, Prompt erstellen, Ergebnis prüfen.</p></div><div class="method"><b>Aufgabe → Kontext → Ergebnis → Prüfung → Verbesserung</b><span>Fehlende Informationen werden als [OFFEN] markiert.</span></div></section>
+<section class="workspace">
+<aside><input id="search" placeholder="Workflow suchen …" autocomplete="off"><div class="tools"><button id="favoritesOnly" type="button">★ Favoriten</button><button id="historyBtn" type="button">Verlauf</button></div><div id="categories"></div></aside>
+<section class="panel">
+<div class="selected"><small id="category">WORKFLOW</small><h2 id="title">Wähle einen Workflow</h2><p id="desc">Durchsuche links die 50 Arbeits-Workflows.</p><button id="favorite" class="star" type="button" disabled>☆ Favorit</button></div>
+<div class="mode"><button class="active" data-mode="standard" type="button">Standard</button><button data-mode="precision" type="button">Präzision</button></div>
+<label for="context">KONTEXT / INPUT</label><textarea id="context" placeholder="Text, Notizen, Anforderungen oder Aufgabe hier einfügen …"></textarea>
+<div id="precisionFields" class="precision-fields" hidden>
+<label>ZIELGRUPPE / EMPFÄNGER<input id="recipient" placeholder="[HIER EINFÜGEN]"></label><label>GEWÜNSCHTE WIRKUNG<input id="effect" placeholder="[HIER EINFÜGEN]"></label><label>AUSGABEFORMAT<input id="format" placeholder="[HIER EINFÜGEN]"></label><label>LÄNGE<input id="length" placeholder="[HIER EINFÜGEN]"></label><label>TON<input id="tone" placeholder="[HIER EINFÜGEN]"></label><label>PFLICHTINFORMATIONEN<input id="required" placeholder="[HIER EINFÜGEN]"></label><label>NICHT ENTHALTEN<input id="exclude" placeholder="[HIER EINFÜGEN]"></label>
+</div>
+<div class="buttons"><button id="run" class="primary" type="button">PROMPT ERSTELLEN</button><button id="copy" disabled type="button">KOPIEREN</button></div>
+<div class="output"><div><b>ERGEBNIS / PROMPT</b><button id="clear" type="button">Leeren</button></div><pre id="output">Noch kein Workflow ausgewählt.</pre></div>
+</section></section></main>
+<footer>THEOONE Office AI · <a href="index.html">Zur Produktseite</a> · 50 Workflows · 100 Prompt-Vorlagen</footer>
+<script src="app.js"></script>
+</body></html>
