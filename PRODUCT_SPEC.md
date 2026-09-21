@@ -1,46 +1,55 @@
-# Product Specification
+# THEOONE Office AI — Product Specification v1.1
 
 ## Ziel
 
-Aus dem THEOONE Office AI Premium Pack eine nutzbare digitale Anwendung machen, in der Nutzer Arbeitsaufgaben auswählen, Kontext eingeben und direkt ein strukturiertes Ergebnis erhalten.
+Aus dem Premium Pack eine nutzbare Workflow-Anwendung machen, die die vorhandenen 50 Workflows und 100 Prompt-Vorlagen als wiederverwendbares Arbeitssystem abbildet.
 
-## Workflow-Engine
+## Source of truth
 
-Jeder Workflow besitzt:
+Die Produktquellen sind:
+- THEOONE Office AI Premium Pack
+- THEOONE Office AI 100 Prompt-Vorlagen
 
+Keine neue Produktlogik darf die dort festgelegten Kernprinzipien stillschweigend ersetzen.
+
+## Datenmodell
+
+Jeder Workflow:
 - id
 - title
 - category
 - description
-- standardPrompt
-- precisionPrompt
-- inputFields
-- outputFormat
-- validationRules
+- standard prompt schema
+- precision prompt schema
+- input
+- output format
+- validation rules
 
-## Gemeinsame Qualitätsregeln
+## Kernregeln
 
-1. Nur belegte Angaben verwenden.
+1. Nur bereitgestellte Informationen verwenden.
 2. Keine Fakten, Zahlen, Termine, Quellen oder Zusagen erfinden.
-3. Fehlende Angaben als `[OFFEN]` markieren.
+3. Fehlende Informationen mit [OFFEN] markieren.
 4. Widersprüche sichtbar machen.
-5. Ergebnis zuerst ausgeben.
-6. Verbesserungshinweise auf maximal drei kurze Hinweise begrenzen.
+5. Ergebnis zuerst.
+6. Maximal drei kurze Verbesserungshinweise.
+7. Menschliche Prüfung bei sensiblen oder geschäftskritischen Inhalten.
 
 ## MVP
 
-- Workflow-Browser
-- Suche und Kategorien
+- 50 Workflows
+- 100 Prompt-Vorlagen
+- Suche
+- Kategorien
 - Standard-/Präzisionsmodus
-- Eingabeformular
-- Ergebnisansicht
-- Kopieren
+- Präzisionsfelder
+- Copy
 - Favoriten
-- Verlauf
-- Planner
-- Upgrade-Hinweise
-- responsive Oberfläche
+- lokaler Verlauf
+- mobile Oberfläche
 
-## Nächster Implementierungsschritt
+## Architektur
 
-Die 50 Workflows werden als JSON-Datenmodell erfasst. Anschließend wird daraus die UI und die Prompt-Ausführungsschicht aufgebaut.
+Workflow → Prompt-Engine → KI-Ausführung → Ergebnis → Prüfung → Verbesserung → Speichern
+
+API-Schlüssel und Provider-Zugangsdaten gehören ausschließlich in eine serverseitige Ausführungsschicht.
