@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import { verifyAccess } from "./_auth.js";
 
-const APP_URL=process.env.APP_URL||"https://theoonenonly1-ai-mindfulboundaries2.vercel.app/app.html";
+const APP_URL=process.env.APP_URL||"/app.html";
 
 export default async function handler(req,res){
  try{
