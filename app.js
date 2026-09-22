@@ -2,7 +2,21 @@ let workflows=[],selected=null,mode="standard",favorites=JSON.parse(localStorage
 const $=id=>document.getElementById(id);
 const baseRules=["Nutze ausschließlich die bereitgestellten Informationen.","Erfinde keine Fakten, Zahlen, Termine, Quellen oder Zusagen.","Fehlende Angaben mit [OFFEN] markieren.","Unklare oder widersprüchliche Angaben kurz kennzeichnen."];
 const quality=["Nur belegte Angaben verwenden.","Keine Fakten, Zahlen, Termine, Zusagen oder Quellen erfinden.","Fehlende Angaben als [OFFEN] markieren.","Widersprüche sichtbar machen.","Vor Ausgabe auf Klarheit und Vollständigkeit prüfen.","Danach nur das fertige Ergebnis ausgeben, gefolgt von maximal 3 kurzen Hinweisen."];
-async function init(){try{workflows=await (await fetch("data/workflows.json")).json();render()}catch(e){$("title").textContent="Datenfehler";$("desc").textContent="Die Workflow-Daten konnten nicht geladen werden."}}
+async function init(){
+ try{
+  const response=await fetch("/api/workflows");
+  if(response.status===401){
+   document.querySelector("main").innerHTML='<section class="intro" style="max-width:760px;margin:80px auto;text-align:center"><div><small>THEOONE OFFICE AI · PREMIUM ACCESS</small><h1>Dein Zugang ist noch nicht freigeschaltet.</h1><p>Der Premium-Bereich wird nach erfolgreicher Zahlung automatisch geöffnet.</p><a href="/#angebot" style="display:inline-block;margin-top:20px;padding:14px 20px;border:1px solid currentColor;border-radius:10px;text-decoration:none">Zur Produktseite</a></div></section>';
+   return;
+  }
+  if(!response.ok) throw new Error("Zugriff konnte nicht geprüft werden.");
+  workflows=await response.json();
+  render();
+ }catch(e){
+  $("title").textContent="Zugang konnte nicht geladen werden";
+  $("desc").textContent=e.message;
+ }
+}
 function render(filter=""){const box=$("categories");box.innerHTML="";[...new Set(workflows.map(w=>w.category))].forEach(cat=>{const list=workflows.filter(w=>w.category===cat&&(w.title+" "+w.description).toLowerCase().includes(filter.toLowerCase())&&(!showFavorites||favorites.includes(w.id)));if(!list.length)return;const sec=document.createElement("section");sec.className="cat";sec.innerHTML="<h3>"+cat+"</h3>";list.forEach(w=>{const b=document.createElement("button");b.className="wf"+(selected&&selected.id===w.id?" active":"");b.textContent=w.id+". "+w.title;b.onclick=()=>select(w);sec.appendChild(b)});box.appendChild(sec)})}
 function select(w){selected=w;$("category").textContent=w.category;$("title").textContent=w.id+". "+w.title;$("desc").textContent=w.description;$("output").textContent="Bereit. Kontext eingeben und Prompt erstellen.";$("copy").disabled=true;$("favorite").disabled=false;$("favorite").textContent=favorites.includes(w.id)?"★ Favorit":"☆ Favorit";render($("search").value)}
 function val(id){return $(id).value.trim()||"[HIER EINFÜGEN]"}
