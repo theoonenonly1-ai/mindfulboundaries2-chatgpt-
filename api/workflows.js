@@ -1,0 +1,67 @@
+const workflows=[
+  {"id":1,"title":"E-Mail kürzen","category":"Kommunikation","description":"Einen vorhandenen Entwurf auf die Kernaussage reduzieren, ohne wichtige Informationen zu verlieren."},
+  {"id":2,"title":"E-Mail freundlicher machen","category":"Kommunikation","description":"Eine sachliche Nachricht wärmer und respektvoller formulieren, ohne unprofessionell zu wirken."},
+  {"id":3,"title":"E-Mail verbindlicher machen","category":"Kommunikation","description":"Eine Nachricht klarer formulieren, damit nächste Schritte, Termine und Zuständigkeiten eindeutig sind."},
+  {"id":4,"title":"Beschwerde beantworten","category":"Kommunikation","description":"Eine Beschwerde strukturiert, ruhig und lösungsorientiert beantworten; keine Zusagen erfinden."},
+  {"id":5,"title":"Termin verschieben","category":"Kommunikation","description":"Eine Terminverschiebung kurz, höflich und mit klaren Alternativvorschlägen formulieren."},
+  {"id":6,"title":"Termin bestätigen","category":"Kommunikation","description":"Termin, Beteiligte, Ort/Medium und nächste Schritte aus den bereitgestellten Angaben bestätigen."},
+  {"id":7,"title":"Telefonnotizen → E-Mail","category":"Kommunikation","description":"Stichpunkte aus einem Telefonat in eine sendefertige E-Mail umwandeln."},
+  {"id":8,"title":"Chat professionell formulieren","category":"Kommunikation","description":"Eine kurze Messenger-Nachricht professionell, aber natürlich formulieren."},
+  {"id":9,"title":"Anfrage beantworten","category":"Kommunikation","description":"Eine Kunden- oder Kollegenanfrage anhand der vorhandenen Informationen strukturiert beantworten."},
+  {"id":10,"title":"Absage formulieren","category":"Kommunikation","description":"Eine höfliche Absage schreiben und – falls sinnvoll – eine konstruktive Alternative nennen."},
+  {"id":11,"title":"Stichpunkte → Fließtext","category":"Dokumente & Text","description":"Rohnotizen in einen logisch aufgebauten, gut lesbaren Text verwandeln."},
+  {"id":12,"title":"Text vereinfachen","category":"Dokumente & Text","description":"Komplexe Formulierungen verständlicher machen, ohne den Inhalt zu verfälschen."},
+  {"id":13,"title":"Text strukturieren","category":"Dokumente & Text","description":"Überschriften, Reihenfolge und Absätze so ordnen, dass der Text schnell erfassbar ist."},
+  {"id":14,"title":"Fehlerprüfung","category":"Dokumente & Text","description":"Rechtschreibung, Grammatik, Widersprüche und unklare Stellen prüfen; Änderungen transparent ausweisen."},
+  {"id":15,"title":"Professionalisieren","category":"Dokumente & Text","description":"Einen vorhandenen Text präziser und professioneller formulieren, ohne Fakten hinzuzufügen."},
+  {"id":16,"title":"Zusammenfassung","category":"Dokumente & Text","description":"Ein Dokument auf Kernaussagen, Entscheidungen, offene Punkte und nächste Schritte reduzieren."},
+  {"id":17,"title":"Entscheidungsvorlage","category":"Dokumente & Text","description":"Aus Informationen eine neutrale Vorlage mit Optionen, Fakten, offenen Punkten und Entscheidungsschritt erstellen."},
+  {"id":18,"title":"Anleitung schreiben","category":"Dokumente & Text","description":"Einen bekannten Ablauf in klare, nummerierte Arbeitsschritte umwandeln."},
+  {"id":19,"title":"Checkliste aus Prozess","category":"Dokumente & Text","description":"Aus einem beschriebenen Arbeitsablauf eine abhakbare Checkliste erzeugen."},
+  {"id":20,"title":"FAQ aus Dokument","category":"Dokumente & Text","description":"Aus einem Dokument häufig erwartbare Fragen und präzise Antworten ableiten."},
+  {"id":21,"title":"Tagesplanung","category":"Planung & Organisation","description":"Aufgaben nach Priorität, Zeitbedarf und Abhängigkeiten in einen realistischen Tagesplan bringen."},
+  {"id":22,"title":"Wochenplanung","category":"Planung & Organisation","description":"Aufgaben und Termine zu einer übersichtlichen Wochenstruktur zusammenführen."},
+  {"id":23,"title":"Aufgabe zerlegen","category":"Planung & Organisation","description":"Eine große Aufgabe in konkrete, ausführbare Teilschritte zerlegen."},
+  {"id":24,"title":"Priorisieren","category":"Planung & Organisation","description":"Aufgaben anhand der vom Nutzer vorgegebenen Kriterien priorisieren, ohne eigene Ziele zu erfinden."},
+  {"id":25,"title":"Meeting-Agenda","category":"Planung & Organisation","description":"Aus Thema und Ziel eines Meetings eine fokussierte Agenda mit Zeitblöcken erstellen."},
+  {"id":26,"title":"Meeting-Follow-up","category":"Planung & Organisation","description":"Notizen in Entscheidungen, Aufgaben, Verantwortliche und Fristen strukturieren."},
+  {"id":27,"title":"Projektstart","category":"Planung & Organisation","description":"Aus Ziel, Rahmenbedingungen und bekannten Aufgaben einen Projektstartplan erstellen."},
+  {"id":28,"title":"Projekt-Risiken","category":"Planung & Organisation","description":"Bekannte Risiken sammeln, beschreiben und mit möglichen Gegenmaßnahmen versehen."},
+  {"id":29,"title":"Arbeitsablauf verbessern","category":"Planung & Organisation","description":"Einen bestehenden Ablauf auf unnötige Schritte, Übergaben und Unklarheiten prüfen."},
+  {"id":30,"title":"Wiederkehrende Aufgabe standardisieren","category":"Planung & Organisation","description":"Eine regelmäßig wiederkehrende Aufgabe als Standardprozess mit Checkliste dokumentieren."},
+  {"id":31,"title":"Recherchefrage schärfen","category":"Recherche & Analyse","description":"Eine unscharfe Frage in präzise Teilfragen und Suchkriterien umwandeln."},
+  {"id":32,"title":"Quellenvergleich","category":"Recherche & Analyse","description":"Bereitgestellte Quellen nach Aussagen, Übereinstimmungen, Widersprüchen und offenen Punkten vergleichen."},
+  {"id":33,"title":"Informationen sortieren","category":"Recherche & Analyse","description":"Unstrukturierte Informationen nach Themen, Relevanz und Priorität ordnen."},
+  {"id":34,"title":"Pro/Contra vorbereiten","category":"Recherche & Analyse","description":"Fakten und Argumente getrennt sammeln, ohne eine Entscheidung vorwegzunehmen."},
+  {"id":35,"title":"Daten erklären","category":"Recherche & Analyse","description":"Zahlen oder Tabellen verständlich beschreiben und auffällige Muster markieren."},
+  {"id":36,"title":"Anforderungen extrahieren","category":"Recherche & Analyse","description":"Aus einem Briefing konkrete Muss-, Soll- und offene Anforderungen extrahieren."},
+  {"id":37,"title":"Kundenanforderungen strukturieren","category":"Recherche & Analyse","description":"Kundenwünsche in Anforderungen, Prioritäten, Rückfragen und Annahmen zerlegen."},
+  {"id":38,"title":"Fragenkatalog erstellen","category":"Recherche & Analyse","description":"Für ein Gespräch oder eine Recherche die wichtigsten offenen Fragen zusammenstellen."},
+  {"id":39,"title":"Recherche-Checkliste","category":"Recherche & Analyse","description":"Aus einer Rechercheaufgabe eine reproduzierbare Prüfliste erstellen."},
+  {"id":40,"title":"Kurzbriefing","category":"Recherche & Analyse","description":"Ein umfangreiches Thema in ein kompaktes Briefing mit Kontext, Ziel und offenen Punkten überführen."},
+  {"id":41,"title":"Angebotsentwurf strukturieren","category":"Vertrieb & Alltag","description":"Vorhandene Leistungsdaten in eine übersichtliche Angebotsstruktur bringen; Preise nur übernehmen, nicht erfinden."},
+  {"id":42,"title":"Leistungsbeschreibung","category":"Vertrieb & Alltag","description":"Eine technische oder praktische Leistung verständlich und kundengerecht beschreiben."},
+  {"id":43,"title":"Kundennutzen herausarbeiten","category":"Vertrieb & Alltag","description":"Aus vorhandenen Produkteigenschaften nachvollziehbare Kundennutzen formulieren."},
+  {"id":44,"title":"Einwände sammeln","category":"Vertrieb & Alltag","description":"Mögliche Rückfragen oder Einwände aus dem vorhandenen Angebot ableiten."},
+  {"id":45,"title":"Produktbeschreibung","category":"Vertrieb & Alltag","description":"Eine klare Produktbeschreibung aus bereitgestellten Fakten erstellen."},
+  {"id":46,"title":"Social-Caption aus Fachinhalt","category":"Vertrieb & Alltag","description":"Aus einem Fachthema einen kurzen, verständlichen Social-Media-Text erstellen."},
+  {"id":47,"title":"Content-Ideen aus FAQ","category":"Vertrieb & Alltag","description":"Aus häufigen Fragen konkrete Content-Themen und Hooks entwickeln."},
+  {"id":48,"title":"Kundenfeedback clustern","category":"Vertrieb & Alltag","description":"Feedback nach Themen, Problemen, Wünschen und wiederkehrenden Mustern gruppieren."},
+  {"id":49,"title":"Kundengespräch vorbereiten","category":"Vertrieb & Alltag","description":"Vorhandene Informationen in Gesprächsziel, Fragen, Fakten und nächste Schritte strukturieren."},
+  {"id":50,"title":"Persönliche Wissensdatenbank","category":"Vertrieb & Alltag","description":"Wiederverwendbares Wissen aus Notizen in ein durchsuchbares Schema überführen."}
+];
+
+export default function handler(req,res){
+ const token=req.headers.cookie?.match(/(?:^|; )theoone_access=([^;]+)/)?.[1];
+ if(!token) return res.status(401).json({error:"Zugang erforderlich."});
+ if(!process.env.ACCESS_SECRET) return res.status(503).json({error:"ACCESS_SECRET ist noch nicht konfiguriert."});
+ const crypto=require("node:crypto");
+ try{
+  const [payload,sig]=decodeURIComponent(token).split(".");
+  const expected=crypto.createHmac("sha256",process.env.ACCESS_SECRET).update(payload).digest("base64url");
+  if(!sig||!crypto.timingSafeEqual(Buffer.from(sig),Buffer.from(expected))) throw new Error();
+  const data=JSON.parse(Buffer.from(payload,"base64url").toString());
+  if(!data.exp||data.exp<Date.now()) throw new Error();
+  return res.status(200).json(workflows);
+ }catch{return res.status(401).json({error:"Zugang abgelaufen oder ungültig."});}
+}
