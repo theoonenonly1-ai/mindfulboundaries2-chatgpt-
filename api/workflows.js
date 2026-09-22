@@ -51,17 +51,9 @@ const workflows=[
   {"id":50,"title":"Persönliche Wissensdatenbank","category":"Vertrieb & Alltag","description":"Wiederverwendbares Wissen aus Notizen in ein durchsuchbares Schema überführen."}
 ];
 
+import { verifyAccess } from "./_auth.js";
+
 export default function handler(req,res){
- const token=req.headers.cookie?.match(/(?:^|; )theoone_access=([^;]+)/)?.[1];
- if(!token) return res.status(401).json({error:"Zugang erforderlich."});
- if(!process.env.ACCESS_SECRET) return res.status(503).json({error:"ACCESS_SECRET ist noch nicht konfiguriert."});
- const crypto=require("node:crypto");
- try{
-  const [payload,sig]=decodeURIComponent(token).split(".");
-  const expected=crypto.createHmac("sha256",process.env.ACCESS_SECRET).update(payload).digest("base64url");
-  if(!sig||!crypto.timingSafeEqual(Buffer.from(sig),Buffer.from(expected))) throw new Error();
-  const data=JSON.parse(Buffer.from(payload,"base64url").toString());
-  if(!data.exp||data.exp<Date.now()) throw new Error();
-  return res.status(200).json(workflows);
- }catch{return res.status(401).json({error:"Zugang abgelaufen oder ungültig."});}
+ if(!verifyAccess(req)) return res.status(401).json({error:"Zugang erforderlich."});
+ return res.status(200).json(workflows);
 }
