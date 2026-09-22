@@ -1,3 +1,5 @@
+import { verifyAccess } from "./_auth.js";
+
 const RULES=[
  "Nutze ausschließlich die bereitgestellten Informationen.",
  "Erfinde keine Fakten, Zahlen, Termine, Quellen oder Zusagen.",
@@ -8,6 +10,7 @@ const RULES=[
 
 export default async function handler(req,res){
  if(req.method!=="POST") return res.status(405).json({error:"Nur POST ist erlaubt."});
+ if(!verifyAccess(req)) return res.status(401).json({error:"Premium-Zugang erforderlich."});
  try{
   if(!process.env.OPENAI_API_KEY) return res.status(503).json({error:"OPENAI_API_KEY ist auf dem Server noch nicht konfiguriert."});
   const {workflow,mode="standard",input="",fields={}}=req.body||{};
